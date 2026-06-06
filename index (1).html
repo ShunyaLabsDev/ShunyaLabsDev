@@ -1,0 +1,2791 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shunya Labs — Infinite Digital Possibilities</title>
+    <meta
+      name="description"
+      content="Shunya Labs helps local businesses establish a strong digital presence through professional websites, custom software, Google Business setup, and WhatsApp automation. Based in Himmatnagar, Gujarat."
+    />
+    <meta
+      name="keywords"
+      content="web development, website design, Gujarat, Himmatnagar, WhatsApp automation, Google Business, software solutions"
+    />
+    <meta name="author" content="Krish Suthar" />
+    <meta
+      property="og:title"
+      content="Shunya Labs — Infinite Digital Possibilities"
+    />
+    <meta
+      property="og:description"
+      content="Professional Websites, Software Solutions, and Digital Tools for local businesses."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+      /* ─── TOKENS ─── */
+      :root {
+        --night: #0f172a;
+        --night-2: #1e293b;
+        --night-3: #334155;
+        --accent: #2563eb;
+        --accent-light: #3b82f6;
+        --accent-glow: rgba(37, 99, 235, 0.35);
+        --white: #ffffff;
+        --off-white: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: rgba(255, 255, 255, 0.08);
+        --card-bg: rgba(255, 255, 255, 0.04);
+        --radius: 16px;
+        --radius-sm: 10px;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      /* ─── RESET ─── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--night);
+        color: var(--white);
+        overflow-x: hidden;
+        line-height: 1.65;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Syne", sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* ─── SCROLLBAR ─── */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--night);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 4px;
+      }
+
+      select.form-control-custom {
+        background-color: #1e293b;
+        color: #fff;
+      }
+
+      select.form-control-custom option {
+        background-color: #1e293b;
+        color: #fff;
+      }
+
+      /* ─── NOISE OVERLAY ─── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      /* ─── NAVBAR ─── */
+      #navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 20px 0;
+        transition: all 0.4s ease;
+      }
+      #navbar.scrolled {
+        background: rgba(15, 23, 42, 0.92);
+        backdrop-filter: blur(20px);
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: "Syne", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .nav-logo span {
+        color: var(--accent);
+      }
+      .logo-infinity {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--accent), #7c3aed);
+        border-radius: 8px;
+        position: relative;
+        margin-right: 8px;
+        vertical-align: middle;
+        box-shadow: 0 0 20px var(--accent-glow);
+      }
+      .logo-infinity::before {
+        content: "∞";
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .navbar-nav .nav-link {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.75) !important;
+        padding: 6px 14px !important;
+        border-radius: 8px;
+        transition: all 0.25s;
+      }
+      .navbar-nav .nav-link:hover {
+        color: #fff !important;
+        background: var(--card-bg);
+      }
+
+      .btn-nav {
+        background: var(--accent);
+        color: #fff !important;
+        border-radius: 10px;
+        padding: 8px 20px !important;
+        font-weight: 600;
+        box-shadow: 0 0 20px var(--accent-glow);
+        transition: all 0.25s;
+      }
+      .btn-nav:hover {
+        background: var(--accent-light);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 25px var(--accent-glow);
+      }
+
+      /* ─── SECTIONS ─── */
+      section {
+        position: relative;
+        z-index: 1;
+      }
+      .section-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent-light);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+      }
+      .section-sub {
+        font-size: 1.05rem;
+        color: var(--text-muted);
+        max-width: 560px;
+        line-height: 1.7;
+      }
+
+      /* ─── HERO ─── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 140px 0 80px;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 60% 40%,
+            rgba(37, 99, 235, 0.18) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 50% 50% at 10% 80%,
+            rgba(124, 58, 237, 0.12) 0%,
+            transparent 60%
+          ),
+          var(--night);
+      }
+
+      /* Grid lines */
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image:
+          linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 40%,
+          transparent 100%
+        );
+      }
+
+      .hero-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(37, 99, 235, 0.12);
+        border: 1px solid rgba(37, 99, 235, 0.3);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--accent-light);
+        margin-bottom: 28px;
+      }
+      .hero-pill .dot {
+        width: 7px;
+        height: 7px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: pulse-dot 2s infinite;
+      }
+
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.3);
+        }
+      }
+
+      .hero-headline {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
+        margin-bottom: 24px;
+      }
+      .hero-headline .gradient-word {
+        background: linear-gradient(135deg, var(--accent-light), #a78bfa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-sub {
+        font-size: 1.15rem;
+        color: var(--text-muted);
+        line-height: 1.75;
+        max-width: 520px;
+        margin-bottom: 40px;
+      }
+
+      .hero-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .btn-primary-custom {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 32px;
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        box-shadow: 0 0 30px var(--accent-glow);
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary-custom:hover {
+        background: var(--accent-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 40px var(--accent-glow);
+        color: #fff;
+      }
+
+      .btn-secondary-custom {
+        background: transparent;
+        color: #fff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 32px;
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        backdrop-filter: blur(8px);
+        background: var(--card-bg);
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-secondary-custom:hover {
+        border-color: rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-2px);
+        color: #fff;
+      }
+
+      .hero-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        margin-top: 56px;
+        padding-top: 40px;
+        border-top: 1px solid var(--border);
+      }
+      .stat-item {
+      }
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #fff;
+      }
+      .stat-num span {
+        color: var(--accent-light);
+      }
+      .stat-label {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      /* Hero Visual */
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-card-main {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 28px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: var(--shadow);
+      }
+      .hero-card-inner {
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.15),
+          rgba(124, 58, 237, 0.1)
+        );
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+      .hero-mock-bar {
+        height: 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.15);
+        margin-bottom: 10px;
+      }
+      .hero-mock-bar.accent {
+        background: var(--accent);
+        width: 70%;
+      }
+      .hero-mock-bar.short {
+        width: 45%;
+      }
+      .hero-mock-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .hero-mock-block {
+        flex: 1;
+        height: 60px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.07);
+      }
+      .hero-mock-block.blue {
+        background: rgba(37, 99, 235, 0.25);
+      }
+      .hero-stat-row {
+        display: flex;
+        gap: 12px;
+      }
+      .hero-stat-mini {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px;
+        text-align: center;
+      }
+      .hero-stat-mini .val {
+        font-family: "Syne", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: var(--accent-light);
+      }
+      .hero-stat-mini .lbl {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+      }
+
+      /* Floating badge */
+      .hero-badge {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.82rem;
+        white-space: nowrap;
+      }
+      .hero-badge.b1 {
+        top: -20px;
+        right: -30px;
+      }
+      .hero-badge.b2 {
+        bottom: 10px;
+        left: -30px;
+      }
+      .badge-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      /* ─── SERVICES ─── */
+      #services {
+        padding: 100px 0;
+        background: var(--night);
+      }
+
+      .service-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px 28px;
+        height: 100%;
+        transition: all 0.35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.35s;
+      }
+      .service-card:hover {
+        border-color: rgba(37, 99, 235, 0.4);
+        transform: translateY(-6px);
+        background: rgba(37, 99, 235, 0.06);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      }
+      .service-card:hover::before {
+        opacity: 1;
+      }
+
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        background: rgba(37, 99, 235, 0.15);
+        border: 1px solid rgba(37, 99, 235, 0.25);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--accent-light);
+        transition: all 0.35s;
+      }
+      .service-card:hover .service-icon {
+        background: rgba(37, 99, 235, 0.25);
+        box-shadow: 0 0 20px var(--accent-glow);
+      }
+      .service-card h5 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: -0.02em;
+      }
+      .service-card p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      /* ─── WHY US ─── */
+      #why {
+        padding: 100px 0;
+        background: var(--night-2);
+      }
+
+      .why-bg-accent {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(37, 99, 235, 0.08) 0%,
+          transparent 70%
+        );
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .why-card {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        transition: all 0.3s;
+      }
+      .why-card:hover {
+        border-color: rgba(37, 99, 235, 0.3);
+        background: rgba(37, 99, 235, 0.06);
+        transform: translateY(-3px);
+      }
+      .why-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        background: rgba(37, 99, 235, 0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-light);
+      }
+      .why-card h6 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .why-card p {
+        font-size: 0.83rem;
+        color: var(--text-muted);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* ─── PORTFOLIO ─── */
+      #portfolio {
+        padding: 100px 0;
+        background: var(--night);
+      }
+
+      .portfolio-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.35s;
+        height: 100%;
+      }
+      .portfolio-card:hover {
+        border-color: rgba(37, 99, 235, 0.35);
+        transform: translateY(-6px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .portfolio-mockup {
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pm-mobile {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+      }
+      .pm-rest {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+      }
+      .pm-coach {
+        background: linear-gradient(135deg, #0d1117, #1e293b);
+      }
+
+      /* browser mockup inside card */
+      .browser-frame {
+        width: 88%;
+        background: #fff;
+        border-radius: 10px 10px 0 0;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        bottom: 0;
+      }
+      .browser-bar {
+        background: #e8eaed;
+        padding: 7px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .browser-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .browser-url {
+        flex: 1;
+        background: #fff;
+        border-radius: 4px;
+        padding: 3px 10px;
+        font-size: 0.65rem;
+        color: #666;
+        margin-left: 8px;
+      }
+      .browser-content {
+        padding: 0;
+      }
+
+      /* Mobile mockup */
+      .pm-1-content {
+        background: #fff;
+      }
+      .pm-bar {
+        height: 6px;
+        border-radius: 3px;
+        margin: 0 0 6px;
+      }
+      .pm-hero-block {
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+      }
+      .pm-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        padding: 10px;
+      }
+      .pm-item {
+        background: #f3f4f6;
+        border-radius: 6px;
+        height: 40px;
+      }
+
+      .pm-rest-hero {
+        background: linear-gradient(135deg, #b45309, #78350f);
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+      }
+      .pm-menu-row {
+        display: flex;
+        gap: 6px;
+        padding: 10px;
+        overflow: hidden;
+      }
+      .pm-menu-item {
+        flex: 0 0 60px;
+        height: 50px;
+        background: #f9fafb;
+        border-radius: 6px;
+      }
+
+      .pm-coach-hero {
+        background: linear-gradient(135deg, #059669, #064e3b);
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+      }
+      .pm-cards {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .pm-course {
+        height: 20px;
+        background: #f3f4f6;
+        border-radius: 4px;
+      }
+
+      .portfolio-body {
+        padding: 22px 22px 24px;
+      }
+      .portfolio-tag {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent-light);
+        background: rgba(37, 99, 235, 0.1);
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        border-radius: 6px;
+        padding: 3px 10px;
+        display: inline-block;
+        margin-bottom: 12px;
+      }
+      .portfolio-body h5 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .portfolio-body p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+
+      .btn-view {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--accent-light);
+        border: 1px solid rgba(37, 99, 235, 0.3);
+        border-radius: 8px;
+        padding: 7px 16px;
+        transition: all 0.25s;
+        background: rgba(37, 99, 235, 0.08);
+      }
+      .btn-view:hover {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+
+      /* ─── PROCESS ─── */
+      #process {
+        padding: 100px 0;
+        background: var(--night-2);
+      }
+
+      .process-steps {
+        position: relative;
+      }
+      .process-line {
+        position: absolute;
+        top: 40px;
+        left: calc(12.5% + 20px);
+        right: calc(12.5% + 20px);
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          rgba(37, 99, 235, 0.2)
+        );
+        z-index: 0;
+      }
+
+      .process-step {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .process-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--night);
+        border: 2px solid rgba(37, 99, 235, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-family: "Syne", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--accent-light);
+        position: relative;
+        transition: all 0.3s;
+      }
+      .process-step:hover .process-circle {
+        border-color: var(--accent);
+        background: rgba(37, 99, 235, 0.1);
+        box-shadow: 0 0 30px var(--accent-glow);
+      }
+      .process-icon-wrap {
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+      .process-step h5 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .process-step p {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* ─── TESTIMONIALS ─── */
+      #testimonials {
+        padding: 100px 0;
+        background: var(--night);
+      }
+
+      .testi-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px;
+        height: 100%;
+        transition: all 0.3s;
+        position: relative;
+      }
+      .testi-card::before {
+        content: '"';
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        font-size: 5rem;
+        font-family: "Syne", sans-serif;
+        color: rgba(37, 99, 235, 0.15);
+        line-height: 1;
+      }
+      .testi-card:hover {
+        border-color: rgba(37, 99, 235, 0.3);
+        transform: translateY(-4px);
+      }
+
+      .testi-stars {
+        color: #f59e0b;
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+      }
+      .testi-text {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testi-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+      }
+      .testi-avatar.av1 {
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+      }
+      .testi-avatar.av2 {
+        background: linear-gradient(135deg, #059669, #2563eb);
+      }
+      .testi-avatar.av3 {
+        background: linear-gradient(135deg, #b45309, #dc2626);
+      }
+      .testi-name {
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .testi-biz {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
+
+      /* ─── ABOUT ─── */
+      #about {
+        padding: 100px 0;
+        background: var(--night-2);
+      }
+
+      .founder-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        overflow: hidden;
+      }
+      .founder-top {
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.2),
+          rgba(124, 58, 237, 0.15)
+        );
+        padding: 40px 40px 0;
+        display: flex;
+        justify-content: center;
+      }
+      .founder-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), #7c3aed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne", sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #fff;
+        border: 4px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 40px var(--accent-glow);
+        margin-bottom: -20px;
+      }
+      .founder-body {
+        padding: 36px 32px 32px;
+        text-align: center;
+      }
+      .founder-name {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 4px;
+      }
+      .founder-role {
+        color: var(--accent-light);
+        font-size: 0.88rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      .founder-bio {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.75;
+        margin-bottom: 24px;
+      }
+      .founder-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+      .f-tag {
+        background: rgba(37, 99, 235, 0.12);
+        border: 1px solid rgba(37, 99, 235, 0.25);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--accent-light);
+      }
+
+      /* ─── CTA ─── */
+      #cta {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.15) 0%,
+          rgba(124, 58, 237, 0.1) 100%
+        );
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .cta-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 80% at 50% 50%,
+          rgba(37, 99, 235, 0.12),
+          transparent
+        );
+      }
+      .cta-title {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin-bottom: 16px;
+      }
+      .cta-sub {
+        font-size: 1.05rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+      }
+
+      /* ───  ─── */
+      #contact {
+        padding: 100px 0;
+        background: var(--night);
+      }
+
+      .contact-info-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px;
+        height: 100%;
+      }
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .contact-item:last-child {
+        border-bottom: none;
+      }
+      .contact-icon {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+        background: rgba(37, 99, 235, 0.12);
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent-light);
+      }
+      .contact-item h6 {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .contact-item p {
+        font-size: 0.95rem;
+        margin: 0;
+        color: #fff;
+      }
+      .contact-item a {
+        color: #fff;
+      }
+      .contact-item a:hover {
+        color: var(--accent-light);
+      }
+
+      .contact-form-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 36px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+      .form-label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .form-control-custom {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        color: #fff;
+        transition: all 0.25s;
+        outline: none;
+      }
+      .form-control-custom::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .form-control-custom:focus {
+        border-color: rgba(37, 99, 235, 0.5);
+        background: rgba(37, 99, 235, 0.06);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+      textarea.form-control-custom {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--night-2);
+        border-top: 1px solid var(--border);
+        padding: 64px 0 0;
+      }
+      .footer-brand p {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-top: 14px;
+        max-width: 280px;
+      }
+      .footer-heading {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 18px;
+      }
+      .footer-links {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+      .footer-links a {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.6);
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--accent-light);
+      }
+      .footer-contact p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+      .footer-contact a {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .footer-contact a:hover {
+        color: var(--accent-light);
+      }
+      .social-icons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .social-btn {
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.25s;
+        background: var(--card-bg);
+      }
+      .social-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent-light);
+        background: rgba(37, 99, 235, 0.1);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--border);
+        padding: 20px 0;
+        margin-top: 48px;
+      }
+      .footer-bottom p {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.3);
+        margin: 0;
+      }
+      .footer-bottom span {
+        color: var(--accent-light);
+      }
+
+      /* ─── FLOATING BUTTONS ─── */
+      .wa-float {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 999;
+        width: 56px;
+        height: 56px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s;
+        text-decoration: none;
+        animation: wa-bounce 3s ease-in-out infinite;
+      }
+      .wa-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+      }
+      @keyframes wa-bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      .scroll-top {
+        position: fixed;
+        bottom: 94px;
+        right: 28px;
+        z-index: 999;
+        width: 44px;
+        height: 44px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.7);
+        transition: all 0.3s;
+        backdrop-filter: blur(12px);
+      }
+      .scroll-top:hover {
+        border-color: var(--accent);
+        color: var(--accent-light);
+        background: rgba(37, 99, 235, 0.1);
+      }
+      .scroll-top.show {
+        display: flex;
+      }
+
+      /* ─── ANIMATIONS ─── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .delay-1 {
+        transition-delay: 0.1s;
+      }
+      .delay-2 {
+        transition-delay: 0.2s;
+      }
+      .delay-3 {
+        transition-delay: 0.3s;
+      }
+      .delay-4 {
+        transition-delay: 0.4s;
+      }
+      .delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 991px) {
+        .hero-visual {
+          margin-top: 48px;
+        }
+        .process-line {
+          display: none;
+        }
+        .hero-badge {
+          display: none;
+        }
+      }
+      @media (max-width: 575px) {
+        .hero-btns .btn-primary-custom,
+        .hero-btns .btn-secondary-custom {
+          width: 100%;
+          justify-content: center;
+        }
+        .contact-form-card {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+    <nav id="navbar" class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand nav-logo" href="#">
+          <span class="logo-infinity"></span>Shunya<span>Labs</span>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <i
+            data-lucide="menu"
+            style="color: #fff; width: 22px; height: 22px"
+          ></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#process">Process</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item ms-lg-2">
+              <a
+                href="https://wa.me/916353936473"
+                class="nav-link btn-nav"
+                target="_blank"
+                >WhatsApp Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid"></div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-pill">
+              <span class="dot"></span>
+              Now Serving Local Businesses Across Gujarat
+            </div>
+            <h1 class="hero-headline">
+              Turning Local<br />
+              Businesses<br />
+              <span class="gradient-word">Digital</span>
+            </h1>
+            <p class="hero-sub">
+              Professional Websites, Software Solutions, and Digital Tools that
+              help businesses grow online — from ₹5,000.
+            </p>
+            <div class="hero-btns">
+              <a href="#contact" class="btn-primary-custom">
+                <i data-lucide="calendar" style="width: 16px; height: 16px"></i>
+                Get Free Consultation
+              </a>
+              <a
+                href="https://wa.me/916353936473"
+                class="btn-secondary-custom"
+                target="_blank"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                WhatsApp Us
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <div class="stat-num">20<span>+</span></div>
+                <div class="stat-label">Projects Delivered</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">15<span>+</span></div>
+                <div class="stat-label">Happy Clients</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">3<span>x</span></div>
+                <div class="stat-label">Avg. Leads Increase</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 offset-lg-1">
+            <div class="hero-visual">
+              <div class="hero-badge b1">
+                <div
+                  class="badge-icon"
+                  style="background: rgba(74, 222, 128, 0.15)"
+                >
+                  ✅
+                </div>
+                <div>
+                  <div style="font-weight: 600; font-size: 0.82rem">
+                    Website Live!
+                  </div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted)">
+                    Delivered in 7 days
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-card-main">
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-bottom: 16px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 8px;
+                      height: 8px;
+                      border-radius: 50%;
+                      background: #4ade80;
+                    "
+                  ></div>
+                  <span style="font-size: 0.78rem; color: var(--text-muted)"
+                    >Live Dashboard Preview</span
+                  >
+                </div>
+                <div class="hero-card-inner">
+                  <div class="hero-mock-bar accent"></div>
+                  <div class="hero-mock-bar short"></div>
+                  <div class="hero-mock-row mt-2">
+                    <div class="hero-mock-block blue"></div>
+                    <div class="hero-mock-block"></div>
+                  </div>
+                </div>
+                <div class="hero-stat-row">
+                  <div class="hero-stat-mini">
+                    <div class="val">↑87%</div>
+                    <div class="lbl">Traffic</div>
+                  </div>
+                  <div class="hero-stat-mini">
+                    <div class="val">₹50k</div>
+                    <div class="lbl">Revenue</div>
+                  </div>
+                  <div class="hero-stat-mini">
+                    <div class="val">4.9★</div>
+                    <div class="lbl">Google</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-badge b2">
+                <div
+                  class="badge-icon"
+                  style="background: rgba(37, 99, 235, 0.2)"
+                >
+                  🚀
+                </div>
+                <div>
+                  <div style="font-weight: 600; font-size: 0.82rem">
+                    WhatsApp Bot
+                  </div>
+                  <div style="font-size: 0.72rem; color: var(--text-muted)">
+                    Auto-replies setup
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ SERVICES ═══════════════════════════════ -->
+    <section id="services">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label fade-up">What We Do</div>
+          <h2 class="section-title fade-up delay-1">
+            Services Built for<br />Local Business Growth
+          </h2>
+          <p class="section-sub mx-auto mt-3 fade-up delay-2">
+            Everything you need to go digital — under one roof, at pricing that
+            makes sense for local businesses.
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up delay-1">
+            <div class="service-card">
+              <div class="service-icon">
+                <i data-lucide="monitor" style="width: 22px; height: 22px"></i>
+              </div>
+              <h5>Professional Business Websites</h5>
+              <p>
+                Modern, fast, mobile-first websites that represent your brand
+                professionally and convert visitors into customers.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up delay-2">
+            <div class="service-card">
+              <div class="service-icon">
+                <i
+                  data-lucide="shopping-bag"
+                  style="width: 22px; height: 22px"
+                ></i>
+              </div>
+              <h5>Product Catalog Websites</h5>
+              <p>
+                Showcase your products with beautiful catalog pages — ideal for
+                mobile shops, hardware stores, and retail businesses.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up delay-3">
+            <div class="service-card">
+              <div class="service-icon">
+                <i data-lucide="map-pin" style="width: 22px; height: 22px"></i>
+              </div>
+              <h5>Google Business Setup</h5>
+              <p>
+                Get found on Google Maps. We set up and optimize your Google
+                Business profile so local customers can find you easily.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up delay-1">
+            <div class="service-card">
+              <div class="service-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  style="color: var(--accent-light)"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+              </div>
+              <h5>WhatsApp Automation</h5>
+              <p>
+                Auto-reply to customer inquiries, send order confirmations, and
+                run marketing campaigns through WhatsApp Business API.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up delay-2">
+            <div class="service-card">
+              <div class="service-icon">
+                <i data-lucide="code-2" style="width: 22px; height: 22px"></i>
+              </div>
+              <h5>Custom Software Solutions</h5>
+              <p>
+                Billing systems, inventory management, booking apps — we build
+                the exact software your business needs from scratch.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up delay-3">
+            <div class="service-card">
+              <div class="service-icon">
+                <i
+                  data-lucide="shield-check"
+                  style="width: 22px; height: 22px"
+                ></i>
+              </div>
+              <h5>Website Maintenance</h5>
+              <p>
+                Keep your website fast, updated, and secure with ongoing
+                maintenance, content updates, and technical support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ WHY US ═══════════════════════════════ -->
+    <section id="why">
+      <div class="why-bg-accent"></div>
+      <div class="container" style="position: relative; z-index: 1">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5">
+            <div class="section-label fade-up">Why Shunya Labs</div>
+            <h2 class="section-title fade-up delay-1">
+              Built Different.<br />For Local Business.
+            </h2>
+            <p class="section-sub mt-3 fade-up delay-2">
+              We understand what local businesses actually need — not bloated
+              solutions, but focused digital tools that genuinely bring in
+              customers.
+            </p>
+            <div class="mt-4 fade-up delay-3">
+              <a href="#contact" class="btn-primary-custom"
+                >Start Your Project</a
+              >
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-sm-6 fade-up delay-1">
+                <div class="why-card">
+                  <div class="why-icon">
+                    <i
+                      data-lucide="smartphone"
+                      style="width: 20px; height: 20px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h6>Modern Responsive Design</h6>
+                    <p>
+                      Every site looks stunning on mobile, tablet, and desktop —
+                      because your customers browse on all devices.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 fade-up delay-2">
+                <div class="why-card">
+                  <div class="why-icon">
+                    <i data-lucide="zap" style="width: 20px; height: 20px"></i>
+                  </div>
+                  <div>
+                    <h6>Fast Delivery</h6>
+                    <p>
+                      Most projects go live within 5–7 days. No month-long waits
+                      — your business starts growing immediately.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 fade-up delay-3">
+                <div class="why-card">
+                  <div class="why-icon">
+                    <i
+                      data-lucide="indian-rupee"
+                      style="width: 20px; height: 20px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h6>Affordable Pricing</h6>
+                    <p>
+                      Transparent pricing from ₹5,000. No hidden charges, no
+                      agency-level markups. Fair work for fair pay.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 fade-up delay-4">
+                <div class="why-card">
+                  <div class="why-icon">
+                    <i
+                      data-lucide="headphones"
+                      style="width: 20px; height: 20px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h6>Local Support</h6>
+                    <p>
+                      Based right here in Gujarat — we speak your language,
+                      understand your market, and are always reachable.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 fade-up delay-3">
+                <div class="why-card">
+                  <div class="why-icon">
+                    <i
+                      data-lucide="trending-up"
+                      style="width: 20px; height: 20px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h6>SEO Friendly</h6>
+                    <p>
+                      Websites built with clean code and on-page SEO so your
+                      business ranks higher on Google searches.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 fade-up delay-4">
+                <div class="why-card">
+                  <div class="why-icon">
+                    <i
+                      data-lucide="layers"
+                      style="width: 20px; height: 20px"
+                    ></i>
+                  </div>
+                  <div>
+                    <h6>Scalable Solutions</h6>
+                    <p>
+                      Start simple, grow big. Our solutions are built to scale
+                      with your business as it expands.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ PORTFOLIO ═══════════════════════════════ -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label fade-up">Our Work</div>
+          <h2 class="section-title fade-up delay-1">
+            Projects We're<br />Proud Of
+          </h2>
+          <p class="section-sub mx-auto mt-3 fade-up delay-2">
+            Real results for real businesses — each project crafted to drive
+            customers and revenue.
+          </p>
+        </div>
+        <div class="row g-4">
+          <!-- Mobile Shop -->
+          <div class="col-md-6 col-lg-4 fade-up delay-1">
+            <div class="portfolio-card">
+              <div class="portfolio-mockup pm-mobile">
+                <div class="browser-frame">
+                  <div class="browser-bar">
+                    <div class="browser-dot" style="background: #ff5f56"></div>
+                    <div class="browser-dot" style="background: #ffbd2e"></div>
+                    <div class="browser-dot" style="background: #27c93f"></div>
+                    <div class="browser-url">mobilezone.in</div>
+                  </div>
+                  <div class="browser-content">
+                    <div class="pm-hero-block">
+                      <div>
+                        <div
+                          style="
+                            width: 80px;
+                            height: 8px;
+                            background: rgba(255, 255, 255, 0.7);
+                            border-radius: 3px;
+                            margin-bottom: 6px;
+                          "
+                        ></div>
+                        <div
+                          style="
+                            width: 50px;
+                            height: 5px;
+                            background: rgba(255, 255, 255, 0.4);
+                            border-radius: 3px;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="pm-grid">
+                      <div class="pm-item"></div>
+                      <div class="pm-item" style="background: #dbeafe"></div>
+                      <div class="pm-item" style="background: #ede9fe"></div>
+                      <div class="pm-item"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-body">
+                <span class="portfolio-tag">Product Catalog</span>
+                <h5>Mobile Zone Store</h5>
+                <p>
+                  Online product catalog for mobile phones and accessories with
+                  WhatsApp order integration and SEO-optimized pages.
+                </p>
+                <a href="#contact" class="btn-view">
+                  <i
+                    data-lucide="external-link"
+                    style="width: 13px; height: 13px"
+                  ></i>
+                  View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Restaurant -->
+          <div class="col-md-6 col-lg-4 fade-up delay-2">
+            <div class="portfolio-card">
+              <div class="portfolio-mockup pm-rest">
+                <div class="browser-frame">
+                  <div class="browser-bar">
+                    <div class="browser-dot" style="background: #ff5f56"></div>
+                    <div class="browser-dot" style="background: #ffbd2e"></div>
+                    <div class="browser-dot" style="background: #27c93f"></div>
+                    <div class="browser-url">spicedhaven.in</div>
+                  </div>
+                  <div class="browser-content">
+                    <div class="pm-rest-hero">
+                      <div>
+                        <div
+                          style="
+                            width: 90px;
+                            height: 8px;
+                            background: rgba(255, 255, 255, 0.8);
+                            border-radius: 3px;
+                            margin-bottom: 6px;
+                          "
+                        ></div>
+                        <div
+                          style="
+                            width: 60px;
+                            height: 5px;
+                            background: rgba(255, 255, 255, 0.4);
+                            border-radius: 3px;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="pm-menu-row">
+                      <div class="pm-menu-item"></div>
+                      <div
+                        class="pm-menu-item"
+                        style="background: #fef3c7"
+                      ></div>
+                      <div class="pm-menu-item"></div>
+                      <div
+                        class="pm-menu-item"
+                        style="background: #fee2e2"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-body">
+                <span class="portfolio-tag">Restaurant</span>
+                <h5>Spiced Haven Restaurant</h5>
+                <p>
+                  Digital menu and customer engagement platform with online
+                  table reservations and Google Business integration.
+                </p>
+                <a href="#contact" class="btn-view">
+                  <i
+                    data-lucide="external-link"
+                    style="width: 13px; height: 13px"
+                  ></i>
+                  View Project
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coaching -->
+          <div class="col-md-6 col-lg-4 fade-up delay-3">
+            <div class="portfolio-card">
+              <div class="portfolio-mockup pm-coach">
+                <div class="browser-frame">
+                  <div class="browser-bar">
+                    <div class="browser-dot" style="background: #ff5f56"></div>
+                    <div class="browser-dot" style="background: #ffbd2e"></div>
+                    <div class="browser-dot" style="background: #27c93f"></div>
+                    <div class="browser-url">excellenceacademy.in</div>
+                  </div>
+                  <div class="browser-content">
+                    <div class="pm-coach-hero">
+                      <div>
+                        <div
+                          style="
+                            width: 100px;
+                            height: 8px;
+                            background: rgba(255, 255, 255, 0.8);
+                            border-radius: 3px;
+                            margin-bottom: 6px;
+                          "
+                        ></div>
+                        <div
+                          style="
+                            width: 65px;
+                            height: 5px;
+                            background: rgba(255, 255, 255, 0.4);
+                            border-radius: 3px;
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                    <div class="pm-cards">
+                      <div class="pm-course"></div>
+                      <div class="pm-course" style="width: 80%"></div>
+                      <div class="pm-course" style="width: 90%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="portfolio-body">
+                <span class="portfolio-tag">Education</span>
+                <h5>Excellence Academy</h5>
+                <p>
+                  Course showcase and student inquiry system with automated
+                  WhatsApp follow-up for coaching classes enrollment.
+                </p>
+                <a href="#contact" class="btn-view">
+                  <i
+                    data-lucide="external-link"
+                    style="width: 13px; height: 13px"
+                  ></i>
+                  View Project
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ PROCESS ═══════════════════════════════ -->
+    <section id="process">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label fade-up">How It Works</div>
+          <h2 class="section-title fade-up delay-1">
+            From Idea to Live<br />in 4 Simple Steps
+          </h2>
+          <p class="section-sub mx-auto mt-3 fade-up delay-2">
+            A clear, no-surprise process that keeps you informed at every stage.
+          </p>
+        </div>
+        <div class="process-steps">
+          <div class="process-line d-none d-lg-block"></div>
+          <div class="row g-4 justify-content-center">
+            <div class="col-sm-6 col-lg-3 fade-up delay-1">
+              <div class="process-step">
+                <div class="process-circle">
+                  01
+                  <div class="process-icon-wrap">
+                    <i
+                      data-lucide="message-circle"
+                      style="width: 14px; height: 14px; color: #fff"
+                    ></i>
+                  </div>
+                </div>
+                <h5>Discovery Call</h5>
+                <p>
+                  We understand your business, goals, and requirements over a
+                  free WhatsApp or phone call.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3 fade-up delay-2">
+              <div class="process-step">
+                <div class="process-circle">
+                  02
+                  <div class="process-icon-wrap">
+                    <i
+                      data-lucide="layout"
+                      style="width: 14px; height: 14px; color: #fff"
+                    ></i>
+                  </div>
+                </div>
+                <h5>Planning & Design</h5>
+                <p>
+                  We create a design mockup and project plan, finalized together
+                  before a single line of code is written.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3 fade-up delay-3">
+              <div class="process-step">
+                <div class="process-circle">
+                  03
+                  <div class="process-icon-wrap">
+                    <i
+                      data-lucide="code"
+                      style="width: 14px; height: 14px; color: #fff"
+                    ></i>
+                  </div>
+                </div>
+                <h5>Development</h5>
+                <p>
+                  Fast, clean development with daily progress updates. You see
+                  the work as it happens, not at the end.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-3 fade-up delay-4">
+              <div class="process-step">
+                <div class="process-circle">
+                  04
+                  <div class="process-icon-wrap">
+                    <i
+                      data-lucide="rocket"
+                      style="width: 14px; height: 14px; color: #fff"
+                    ></i>
+                  </div>
+                </div>
+                <h5>Launch & Support</h5>
+                <p>
+                  Your site goes live. We train you on managing it and stay
+                  available for ongoing support and updates.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ TESTIMONIALS ═══════════════════════════════ -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label fade-up">Client Stories</div>
+          <h2 class="section-title fade-up delay-1">
+            Local Businesses<br />Love Working With Us
+          </h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4 fade-up delay-1">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">
+                "Krish built our mobile shop website in just 5 days. Sales
+                inquiries via WhatsApp increased by 3x within the first month.
+                Genuinely impressive work for the price."
+              </p>
+              <div class="testi-author">
+                <div class="testi-avatar av1">RJ</div>
+                <div>
+                  <div class="testi-name">Rajesh Joshi</div>
+                  <div class="testi-biz">
+                    Mobile Accessories Shop, Himatnagar
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 fade-up delay-2">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">
+                "Our Google Business profile was set up perfectly. Now when
+                people search 'restaurant near me' in Kheralu, we show up at the
+                top. Footfall has definitely gone up."
+              </p>
+              <div class="testi-author">
+                <div class="testi-avatar av2">MP</div>
+                <div>
+                  <div class="testi-name">Meena Patel</div>
+                  <div class="testi-biz">Restaurant Owner, Kheralu</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 fade-up delay-3">
+            <div class="testi-card">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-text">
+                "The WhatsApp automation Shunya Labs set up for my coaching
+                institute was a game-changer. Students get instant responses now
+                and enrollment confirmations are automatic."
+              </p>
+              <div class="testi-author">
+                <div class="testi-avatar av3">DS</div>
+                <div>
+                  <div class="testi-name">Dinesh Shah</div>
+                  <div class="testi-biz">Coaching Institute, Modasa</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+    <section id="about">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 fade-up">
+            <div class="section-label">Meet the Founder</div>
+            <h2 class="section-title">The Person Behind<br />Shunya Labs</h2>
+            <p class="section-sub mt-3">
+              Hi, I'm Krish Suthar, founder of Shunya Labs.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.7);
+                line-height: 1.8;
+                margin-top: 16px;
+              "
+            >
+              I help local businesses build a professional online presence
+              through modern websites, digital solutions, and automation tools.
+              My goal is simple — to help businesses attract more customers and
+              grow digitally, without the confusion and overhead of big
+              agencies.
+            </p>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.7);
+                line-height: 1.8;
+                margin-top: 12px;
+              "
+            >
+              With a background in Computer Applications and hands-on experience
+              building real-world software, I bring both technical skill and
+              business understanding to every project.
+            </p>
+            <div class="hero-btns mt-4">
+              <a href="tel:+916353936473" class="btn-primary-custom">
+                <i data-lucide="phone" style="width: 16px; height: 16px"></i>
+                Call Krish
+              </a>
+              <a
+                href="https://wa.me/916353936473"
+                class="btn-secondary-custom"
+                target="_blank"
+              >
+                <i
+                  data-lucide="message-circle"
+                  style="width: 16px; height: 16px"
+                ></i>
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5 offset-lg-1 fade-up delay-2">
+            <div class="founder-card">
+              <div class="founder-top">
+                <div class="founder-avatar">KS</div>
+              </div>
+              <div class="founder-body">
+                <div class="founder-name">Krish Suthar</div>
+                <div class="founder-role">
+                  Founder & Developer · Shunya Labs
+                </div>
+                <p class="founder-bio">
+                  "Every local business deserves a strong digital presence. My
+                  job is to make that happen — affordably, quickly, and
+                  professionally."
+                </p>
+                <div class="founder-tags">
+                  <span class="f-tag">Web Development</span>
+                  <span class="f-tag">Python</span>
+                  <span class="f-tag">Automation</span>
+                  <span class="f-tag">Django</span>
+                  <span class="f-tag">Digital Strategy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CTA ═══════════════════════════════ -->
+    <section id="cta">
+      <div class="cta-bg"></div>
+      <div class="container text-center" style="position: relative; z-index: 1">
+        <div class="fade-up">
+          <div class="section-label mb-3">Get Started Today</div>
+          <h2 class="cta-title">Ready to Take Your<br />Business Online?</h2>
+          <p class="cta-sub">
+            Let's build something amazing together. First consultation is
+            completely free.
+          </p>
+          <div class="hero-btns justify-content-center">
+            <a href="tel:+916353936473" class="btn-primary-custom">
+              <i data-lucide="phone" style="width: 16px; height: 16px"></i>
+              Call Now: +91 63539 36473
+            </a>
+            <a
+              href="https://wa.me/916353936473"
+              class="btn-secondary-custom"
+              target="_blank"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
+    <section id="contact">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label fade-up">Get In Touch</div>
+          <h2 class="section-title fade-up delay-1">
+            Let's Start a<br />Conversation
+          </h2>
+          <p class="section-sub mx-auto mt-3 fade-up delay-2">
+            Drop us a message or call directly — we typically respond within 1
+            hour during business hours.
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4 fade-up delay-1">
+            <div class="contact-info-card">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i data-lucide="phone" style="width: 18px; height: 18px"></i>
+                </div>
+                <div>
+                  <h6>Phone</h6>
+                  <p><a href="tel:+916353936473">+91 6353936473</a></p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i data-lucide="mail" style="width: 18px; height: 18px"></i>
+                </div>
+                <div>
+                  <h6>Email</h6>
+                  <p>
+                    <a href="mailto:shunyalabs111@gmail.com"
+                      >shunyalabs111@gmail.com</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i
+                    data-lucide="map-pin"
+                    style="width: 18px; height: 18px"
+                  ></i>
+                </div>
+                <div>
+                  <h6>Location</h6>
+                  <p>Himmatnagar, Gujarat, India</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i data-lucide="clock" style="width: 18px; height: 18px"></i>
+                </div>
+                <div>
+                  <h6>Working Hours</h6>
+                  <p>Mon – Sat: 9:00 AM – 7:00 PM</p>
+                </div>
+              </div>
+              <div style="margin-top: 24px">
+                <a
+                  href="https://wa.me/916353936473"
+                  target="_blank"
+                  class="btn-primary-custom w-100 justify-content-center"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                    />
+                  </svg>
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8 fade-up delay-2">
+            <div class="contact-form-card">
+              <h4
+                style="
+                  font-size: 1.25rem;
+                  font-weight: 700;
+                  margin-bottom: 24px;
+                "
+              >
+                Send Us a Message
+              </h4>
+
+              <!-- start -->
+              <form
+                action="https://formsubmit.co/shunyalabs111@gmail.com"
+                method="POST"
+              >
+                <!-- FormSubmit Settings -->
+                <input type="hidden" name="_captcha" value="false" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Inquiry from Shunya Labs Website"
+                />
+                <input type="hidden" name="_template" value="table" />
+
+                <div class="row g-3">
+                  <!-- Full Name -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label">Full Name *</label>
+                      <input
+                        type="text"
+                        name="full_name"
+                        class="form-control-custom"
+                        placeholder="Your name"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Business Name -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label">Business Name *</label>
+                      <input
+                        type="text"
+                        name="business_name"
+                        class="form-control-custom"
+                        placeholder="Your business name"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label">Phone Number *</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        class="form-control-custom"
+                        placeholder="+91 98765 43210"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        class="form-control-custom"
+                        placeholder="you@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Service -->
+
+                  <select
+                    name="service"
+                    class="form-control-custom"
+                    style="cursor: pointer"
+                  >
+                    <option value="">Select a service...</option>
+                    <option value="Professional Business Website">
+                      Professional Business Website
+                    </option>
+                    <option value="Product Catalog Website">
+                      Product Catalog Website
+                    </option>
+                    <option value="Google Business Setup">
+                      Google Business Setup
+                    </option>
+                    <option value="WhatsApp Automation">
+                      WhatsApp Automation
+                    </option>
+                    <option value="Custom Software Solution">
+                      Custom Software Solution
+                    </option>
+                    <option value="Website Maintenance">
+                      Website Maintenance
+                    </option>
+                  </select>
+
+                  <!-- Message -->
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-label">Message</label>
+
+                      <textarea
+                        name="message"
+                        class="form-control-custom"
+                        placeholder="Tell us about your business and what you need..."
+                        rows="5"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Submit -->
+                  <div class="col-12">
+                    <button
+                      type="submit"
+                      class="btn-primary-custom w-100 justify-content-center"
+                      style="border: none; cursor: pointer"
+                    >
+                      <i
+                        data-lucide="send"
+                        style="width: 16px; height: 16px"
+                      ></i>
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Close -->
+
+              <div
+                id="formSuccess"
+                style="
+                  display: none;
+                  margin-top: 16px;
+                  padding: 14px 18px;
+                  background: rgba(74, 222, 128, 0.1);
+                  border: 1px solid rgba(74, 222, 128, 0.3);
+                  border-radius: 10px;
+                  color: #4ade80;
+                  font-size: 0.88rem;
+                "
+              >
+                ✅ Message sent successfully! We'll get back to you within 1
+                hour.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+    <footer>
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <div class="footer-brand">
+              <div class="nav-logo" style="font-size: 1.4rem">
+                <span class="logo-infinity"></span>Shunya<span
+                  style="color: var(--accent)"
+                  >Labs</span
+                >
+              </div>
+              <p>
+                Helping local businesses build a powerful digital presence —
+                through modern websites, software solutions, and automation
+                tools.
+              </p>
+              <div class="social-icons">
+                <a href="#" class="social-btn" aria-label="Instagram">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </a>
+                <a href="#" class="social-btn" aria-label="LinkedIn">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                    />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                </a>
+                <a
+                  href="https://wa.me/916353936473"
+                  target="_blank"
+                  class="social-btn"
+                  aria-label="WhatsApp"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="mailto:shunyalabs111@gmail.com"
+                  class="social-btn"
+                  aria-label="Email"
+                >
+                  <i data-lucide="mail" style="width: 15px; height: 15px"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <div class="footer-heading">Quick Links</div>
+            <ul class="footer-links">
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#process">Process</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-lg-2">
+            <div class="footer-heading">Services</div>
+            <ul class="footer-links">
+              <li><a href="#services">Business Websites</a></li>
+              <li><a href="#services">Product Catalogs</a></li>
+              <li><a href="#services">Google Business</a></li>
+              <li><a href="#services">WhatsApp Bot</a></li>
+              <li><a href="#services">Custom Software</a></li>
+              <li><a href="#services">Maintenance</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="footer-heading">Contact</div>
+            <div class="footer-contact">
+              <p>📍 Himmatnagar, Gujarat, India</p>
+              <p>📞 <a href="tel:+916353936473">+91 6353936473</a></p>
+              <p>
+                ✉️
+                <a href="mailto:shunyalabs111@gmail.com"
+                  >shunyalabs111@gmail.com</a
+                >
+              </p>
+              <p
+                style="
+                  margin-top: 12px;
+                  font-size: 0.82rem;
+                  color: rgba(255, 255, 255, 0.4);
+                "
+              >
+                Mon–Sat · 9 AM – 7 PM IST
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center gap-2"
+          >
+            <p>
+              © 2025 Shunya Labs. All rights reserved. Built with ❤️ in
+              <span>Gujarat</span>.
+            </p>
+            <p style="color: rgba(255, 255, 255, 0.3); font-size: 0.82rem">
+              Crafted by <span>Krish Suthar</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a
+      href="https://wa.me/916353936473"
+      class="wa-float"
+      target="_blank"
+      aria-label="WhatsApp"
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <!-- Scroll to Top -->
+    <div
+      class="scroll-top"
+      id="scrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      aria-label="Scroll to top"
+    >
+      <i data-lucide="arrow-up" style="width: 18px; height: 18px"></i>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Init Lucide icons
+      lucide.createIcons();
+
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("navbar");
+        nav.classList.toggle("scrolled", window.scrollY > 60);
+
+        const scrollTop = document.getElementById("scrollTop");
+        scrollTop.classList.toggle("show", window.scrollY > 400);
+      });
+
+      // Scroll animation observer
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
+
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+
+      // Smooth nav links
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            const offset = 80;
+            window.scrollTo({
+              top: target.offsetTop - offset,
+              behavior: "smooth",
+            });
+            // Close mobile nav
+            const nav = document.getElementById("navMenu");
+            if (nav.classList.contains("show")) {
+              document.querySelector(".navbar-toggler").click();
+            }
+          }
+        });
+      });
+
+      // Form submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const btn = this.querySelector('button[type="submit"]');
+          btn.textContent = "Sending...";
+          btn.style.opacity = "0.7";
+          setTimeout(() => {
+            btn.innerHTML =
+              '<i data-lucide="check" style="width:16px;height:16px;"></i> Sent!';
+            btn.style.background = "#059669";
+            btn.style.opacity = "1";
+            document.getElementById("formSuccess").style.display = "block";
+            lucide.createIcons();
+            this.reset();
+            setTimeout(() => {
+              btn.innerHTML =
+                '<i data-lucide="send" style="width:16px;height:16px;"></i> Send Message';
+              btn.style.background = "";
+              lucide.createIcons();
+            }, 3000);
+          }, 1400);
+        });
+    </script>
+  </body>
+</html>
